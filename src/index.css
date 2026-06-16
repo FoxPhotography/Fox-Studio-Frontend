@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ─── Fox Studio Design Tokens ────────────────────────────── */
+@theme {
+  --color-fox-bg: #0A0A0A;
+  --color-fox-bg-secondary: #111111;
+  --color-fox-card: #161616;
+  --color-fox-text: #F8F8F8;
+  --color-fox-text-secondary: #8A8A8A;
+  --color-fox-text-muted: #555555;
+  --color-fox-gold: #D4AF37;
+  --color-fox-gold-hover: #E5C34B;
+  --color-fox-gold-subtle: oklch(0.75 0.12 85 / 0.1);
+  --color-fox-border: #232323;
+  --color-fox-border-light: #2A2A2A;
+  --color-fox-success: #22C55E;
+  --color-fox-error: #EF4444;
+  --color-fox-warning: #F59E0B;
+  --color-fox-overlay: oklch(0 0 0 / 0.8);
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+/* ─── Base Styles ─────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-fox-bg);
+  color: var(--color-fox-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── Selection ───────────────────────────────────────────── */
+::selection {
+  background-color: var(--color-fox-gold);
+  color: var(--color-fox-bg);
+}
+
+/* ─── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-fox-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-fox-border-light);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-fox-gold);
+}
+
+/* ─── Custom Utilities ────────────────────────────────────── */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #D4AF37, #E5C34B, #D4AF37);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass {
+  background: rgba(17, 17, 17, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(35, 35, 35, 0.5);
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ─── Page Transitions ────────────────────────────────────── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* ─── Micro Animations ────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulseSlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.65; }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 4s ease-in-out infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 12s linear infinite;
+}
+
