@@ -1,0 +1,15 @@
+const fs = require('fs');
+const path = require('path');
+
+const filePath = path.join(__dirname, '..', 'dist', '_redirects');
+
+if (fs.existsSync(filePath)) {
+  let content = fs.readFileSync(filePath, 'utf8');
+  // Use VITE_API_BASE from Netlify env, or fallback to the production URL
+  const backendUrl = process.env.VITE_API_BASE || 'https://fox-studio-backend-production.up.railway.app';
+  content = content.replace(/__BACKEND_URL__/g, backendUrl);
+  fs.writeFileSync(filePath, content);
+  console.log(`Successfully replaced __BACKEND_URL__ with ${backendUrl} in dist/_redirects`);
+} else {
+  console.warn(`Warning: dist/_redirects not found at ${filePath}`);
+}
